@@ -1,0 +1,5 @@
+enum TriangleKind {
+	EQUILATERAL,
+	ISOSCELES,
+	SCALENE
+}
