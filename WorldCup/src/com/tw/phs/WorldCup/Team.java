@@ -4,13 +4,14 @@ import java.util.HashMap;
 
 class Team {
 	private String name;
+	private static String[] TeamsList={"Australia","India","Pakistan","England","South Africa","New Zealand","Sri Lanka","West Indies"};
+	private HashMap<String,Boolean> played=new HashMap<String, Boolean>();
+
 
 	public HashMap<String, Boolean> getPlayed() {
 		return played;
 	}
 
-	private static String[] TeamsList={"Australia","India","Pakistan","England","South Africa","New Zealand","Sri Lanka","West Indies"};
-	private HashMap<String,Boolean> played=new HashMap<String, Boolean>();
 
 	public String getName() {
 		return name;

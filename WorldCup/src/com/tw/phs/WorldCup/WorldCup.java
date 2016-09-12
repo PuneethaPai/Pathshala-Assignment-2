@@ -95,7 +95,56 @@ public class WorldCup {
 
 			}
 	}
+	public boolean CheckForContineousMatchesOnSmeVenue() throws ParseException {
+		boolean b=false;
+		HashMap<String,Venue> venues=venueObjectMap;
+		for(Map.Entry<String,Venue> entry:venues.entrySet()){
+			ArrayList<Date> fixtures=entry.getValue().getFixtures();
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			Date StartDate = formatter.parse("2014-12-30");
+			Calendar lastdate=Calendar.getInstance();
+			lastdate.setTime(StartDate);
+			for (Date fix :fixtures
+					) {
+				Calendar date = Calendar.getInstance();
+				date.setTime(fix);
+				lastdate.add(Calendar.DATE, 1);
+				System.out.print(lastdate.get(Calendar.DAY_OF_YEAR)+" "+date.get(Calendar.DAY_OF_YEAR));
+				b = lastdate.get(Calendar.YEAR) == date.get(Calendar.YEAR) &&
+						lastdate.get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR);
+				if(b==true){
+					return true;
+				}
+			}
 
+		}
+		return false;
+	}
+
+	public boolean NotMoreThanThreeMAtchesADay(){
+		for (DateClass day: allDates
+				) {
+			if(day.getNofMatches()>3){
+				return true;
+			}
+		}
+		return false;
+	}
+	public boolean checkNotMoreThanFourIdleDays(){
+		int nullcount=0;
+		for(DateClass day:allDates){
+			if(day.played==false){
+				nullcount +=1;
+			}else {
+				nullcount=0;
+			}
+		}
+		if(nullcount<4){
+			return false;
+		}else {
+			return true;
+		}
+	}
 	private static void setupTeams(){
 		for(String t : teamsList){
 			Team team= new Team(t);
